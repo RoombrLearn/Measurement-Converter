@@ -1,5 +1,3 @@
-# Measurement-Converter
-Measurement converter for unit length in mm, cm, inches, feet and meter
 <!doctype html>
 <html lang="en">
 <head>
