@@ -1,0 +1,87 @@
+<style>
+  .converter-box {
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    padding: 20px;
+    border-radius: 16px;
+    max-width: 320px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+  .converter-box h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 12px;
+  }
+  .input-group {
+    margin-bottom: 10px;
+  }
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  .input-group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    outline: none;
+  }
+  .input-group input:focus {
+    border-color: #4bc0c8;
+  }
+</style>
+
+<div class="converter-box">
+  <h3>Length Converter</h3>
+  <div class="input-group">
+    <label>Millimeters (mm)</label>
+    <input type="number" id="mm" oninput="convertFrom('mm')" placeholder="Enter mm">
+  </div>
+  <div class="input-group">
+    <label>Centimeters (cm)</label>
+    <input type="number" id="cm" oninput="convertFrom('cm')" placeholder="Enter cm">
+  </div>
+  <div class="input-group">
+    <label>Meters (m)</label>
+    <input type="number" id="m" oninput="convertFrom('m')" placeholder="Enter meters">
+  </div>
+  <div class="input-group">
+    <label>Inches (in)</label>
+    <input type="number" id="in" oninput="convertFrom('in')" placeholder="Enter inches">
+  </div>
+  <div class="input-group">
+    <label>Feet (ft)</label>
+    <input type="number" id="ft" oninput="convertFrom('ft')" placeholder="Enter feet">
+  </div>
+</div>
+
+<script>
+  function convertFrom(unit) {
+    const mm = document.getElementById('mm');
+    const cm = document.getElementById('cm');
+    const m = document.getElementById('m');
+    const inches = document.getElementById('in');
+    const ft = document.getElementById('ft');
+    let value = parseFloat(document.getElementById(unit).value);
+    if (isNaN(value)) {
+      mm.value = cm.value = m.value = inches.value = ft.value = '';
+      return;
+    }
+    let inMm;
+    switch (unit) {
+      case 'mm': inMm = value; break;
+      case 'cm': inMm = value * 10; break;
+      case 'm':  inMm = value * 1000; break;
+      case 'in': inMm = value * 25.4; break;
+      case 'ft': inMm = value * 304.8; break;
+    }
+    mm.value = (inMm).toFixed(2);
+    cm.value = (inMm / 10).toFixed(2);
+    m.value = (inMm / 1000).toFixed(4);
+    inches.value = (inMm / 25.4).toFixed(2);
+    ft.value = (inMm / 304.8).toFixed(4);
+  }
+</script>
